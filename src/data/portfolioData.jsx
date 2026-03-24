@@ -11,6 +11,7 @@ import {
   TrendingUp,
   Table2,
   Server,
+  Wallet,
 } from 'lucide-react';
 
 // Social media links
@@ -48,40 +49,50 @@ export const heroData = {
 export const projects = [
   {
     id: 1,
+    title: 'Finmate',
+    description: 'Personal finance management application with expense tracking, budgeting, and financial insights. Features issue tracking, pull request workflows, and collaborative tools.',
+    tags: ['JavaScript', 'HTML', 'CSS'],
+    size: 'large',
+    icon: Wallet,
+    link: 'https://github.com/AbidsTent/finmate',
+    github: 'https://github.com/AbidsTent/finmate',
+  },
+  {
+    id: 2,
     title: 'Multi-Channel Sales Intelligence Platform',
     description: 'Database schema to unify POS, online delivery, and catering sales. ETL pipelines for data ingestion. Forecasting models and anomaly detection.',
     tags: ['Python', 'SQLite', 'SQL', 'Flask'],
-    size: 'large',
+    size: 'medium',
     icon: TrendingUp,
     link: '#',
     github: 'https://github.com/AbidsTent',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Sales & Inventory Analysis',
     description: 'Analyzed retail sales data to identify trends in revenue, top-selling items, and inventory turnover.',
     tags: ['Python', 'Pandas', 'Excel'],
-    size: 'medium',
+    size: 'small',
     icon: BarChart3,
     link: '#',
     github: 'https://github.com/AbidsTent',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Restaurant Performance Dashboard',
     description: 'Sales data analysis with Excel Pivot Tables for order volume and menu performance.',
     tags: ['Excel', 'Python', 'Pandas'],
-    size: 'medium',
+    size: 'small',
     icon: Table2,
     link: '#',
     github: 'https://github.com/AbidsTent',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Portfolio Website',
     description: 'Modern portfolio built with React, Tailwind CSS, and Framer Motion.',
     tags: ['React', 'Tailwind', 'Framer Motion'],
-    size: 'small',
+    size: 'medium',
     icon: Globe,
     link: '#',
     github: 'https://github.com/AbidsTent',
@@ -91,6 +102,7 @@ export const projects = [
 // Skills organized by category
 export const skills = [
   // Languages
+  { name: 'JavaScript', icon: Terminal, category: 'Languages' },
   { name: 'Python', icon: Terminal, category: 'Languages' },
   { name: 'SQL', icon: Database, category: 'Languages' },
 

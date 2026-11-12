@@ -6,7 +6,7 @@ import ProjectStatus from './ProjectStatus.jsx';
 import { projectHref } from '../../utils/routes.js';
 
 export default function ProjectCard({ project, index = 0, prominent = false }) {
-  const cover = project.screenshots[0];
+  const cover = project.cover;
   const cardClass = prominent ? 'project-card--featured' : 'project-card--compact';
 
   return (
@@ -14,7 +14,15 @@ export default function ProjectCard({ project, index = 0, prominent = false }) {
       {(prominent || cover) && (
         <div className="project-cover" data-artwork={project.artwork}>
           <span className="project-cover-icon"><ProjectIcon artwork={project.artwork} size={28} /></span>
-          {cover && <AssetImage src={cover.src} alt={cover.alt} className="project-cover-image" />}
+          {cover && (
+            <AssetImage
+              src={cover.src}
+              alt={cover.alt}
+              width={cover.width}
+              height={cover.height}
+              className="project-cover-image"
+            />
+          )}
         </div>
       )}
       <div className="project-card-body">

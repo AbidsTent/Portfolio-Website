@@ -1,4 +1,39 @@
 import { projects as legacyProjects } from '../data/portfolioData.jsx';
+import olistOverviewImage from '../assets/projects/ecommerce-power-bi-analytics/olist-executive-overview.png';
+import warehouseArchitectureImage from '../assets/projects/sql-server-data-warehouse/warehouse-architecture.svg';
+import proposedMobilityArchitectureImage from '../assets/projects/urban-mobility-data-platform/proposed-architecture.svg';
+
+const olistOverview = {
+  src: olistOverviewImage,
+  width: 1828,
+  height: 1026,
+  alt: 'Power BI Executive Overview with delivered revenue and order KPIs, a monthly revenue trend, and rankings by customer state and product category.',
+  caption: 'Executive Overview of the historical Olist marketplace report, with Year and Category both set to All.',
+  sourceUrl: 'https://github.com/AbidsTent/ecommerce-powerbi-analytics/blob/cb0bbf1e114faed20269d029df4c223fa6202c76/screenshots/executive_overview.png',
+  sourceLabel: 'Original Power BI screenshot',
+};
+
+const warehouseArchitecture = {
+  src: warehouseArchitectureImage,
+  width: 1412,
+  height: 2040,
+  diagram: true,
+  alt: 'Warehouse architecture tracing CRM and ERP source files through the Bronze and Silver layers to Gold customer and product dimensions and a sales fact view.',
+  caption: 'Architecture diagram from the SQL Server Data Warehouse repository. The implementation follows the Data With Baraa guided warehouse project.',
+  sourceUrl: 'https://github.com/AbidsTent/DWH-Project/blob/e47ee27631ea8b90b074e42e1932c58c9213a8d8/docs/Architecture%20diagram.svg',
+  sourceLabel: 'Original warehouse diagram',
+};
+
+const proposedMobilityArchitecture = {
+  src: proposedMobilityArchitectureImage,
+  width: 2107,
+  height: 369,
+  diagram: true,
+  alt: 'Proposed NYC taxi data flow from monthly trip files and zone lookups through ingestion, Bronze, validation and quarantine, Silver, Gold marts, and Power BI.',
+  caption: 'Proposed architecture from the Urban Mobility project documentation. It describes a planned system.',
+  sourceUrl: 'https://github.com/AbidsTent/urban-mobility-data-platform/blob/811af309b917548f25b5b6a59c2bc812beec2327/docs/architecture.md',
+  sourceLabel: 'Original Mermaid source',
+};
 
 const archivedSlugs = {
   2: 'multi-channel-sales-intelligence-platform',
@@ -36,6 +71,7 @@ const records = [
         {
           title: 'Warehouse design',
           body: 'The project follows the Data With Baraa warehouse guide. The Bronze layer loads CRM and ERP CSVs, the Silver layer cleans fields and deduplicates customer records, and Gold views expose customer and product dimensions and a sales fact view.',
+          media: warehouseArchitecture,
         },
         {
           title: 'Analysis and quality checks',
@@ -50,6 +86,7 @@ const records = [
     title: 'E-commerce Power BI Analytics',
     category: 'Business intelligence',
     artwork: 'reporting',
+    cover: olistOverview,
     summary: 'A Power BI report for exploring historical Olist marketplace orders, delivered item revenue, and product categories.',
     stack: ['Power BI', 'Power Query', 'Data modeling'],
     status: 'Completed',
@@ -60,6 +97,7 @@ const records = [
         {
           title: 'Report and model',
           body: 'The model distinguishes orders from order items and includes customers, products, translated categories, and a date table. The report includes a monthly trend, state comparisons, and year and category filters.',
+          media: olistOverview,
         },
         {
           title: 'Metric scope',
@@ -89,6 +127,11 @@ const records = [
         {
           title: 'Current scope',
           body: 'The notebook and pipeline scaffold are in the repository. Recorded profiling results and an end-to-end ingestion run are still pending.',
+        },
+        {
+          title: 'Proposed architecture',
+          body: 'The P0 design proposes a monthly flow from NYC taxi source files through ingestion, validation, and reporting.',
+          media: proposedMobilityArchitecture,
         },
       ],
     },
@@ -127,7 +170,6 @@ const records = [
 
 export const projects = records.map(project => ({
   stack: [],
-  screenshots: [],
   githubUrl: null,
   demoUrl: null,
   ...project,

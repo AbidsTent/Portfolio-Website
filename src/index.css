@@ -15,7 +15,8 @@ body {
 
 a:focus-visible,
 button:focus-visible,
-[tabindex="-1"]:focus-visible {
+[tabindex="-1"]:focus-visible,
+.project-figure-frame:focus-visible {
   outline: 2px solid theme('colors.accent');
   outline-offset: 4px;
 }
@@ -524,10 +525,63 @@ main [id],
   font-weight: 600;
 }
 
-.project-card-image {
-  max-width: 100%;
-  margin-block: 0.75rem;
+.project-figure {
+  margin-top: 1.25rem;
+}
+
+.project-figure-controls,
+.project-figure-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.project-figure-controls {
+  margin-bottom: 0.75rem;
+  color: theme('colors.text-secondary');
+  font-size: 0.9rem;
+}
+
+.project-figure-frame {
+  overflow: auto;
+  border: 1px solid var(--line);
   border-radius: 0.5rem;
+  background: #fff;
+  color-scheme: light;
+}
+
+.project-figure-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-figure-frame[data-full-size] {
+  max-height: min(70vh, 44rem);
+}
+
+.project-figure-frame[data-full-size] img {
+  width: auto;
+  max-width: none;
+}
+
+.project-figure figcaption {
+  margin-top: 0.65rem;
+  color: theme('colors.text-secondary');
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.project-figure-links {
+  margin-top: 0.5rem;
+}
+
+.project-figure-links a {
+  padding-block: 0.35rem;
+  color: theme('colors.accent');
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .skill-category,
@@ -616,6 +670,10 @@ main [id],
 
   .skills-grid > :last-child:nth-child(odd) {
     grid-column: 1 / -1;
+  }
+
+  .project-grid:has(.project-cover-image) .project-cover {
+    min-height: 9rem;
   }
 
   .about-layout {

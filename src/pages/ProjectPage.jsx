@@ -1,8 +1,8 @@
 import { ArrowLeft } from 'lucide-react';
 import Container from '../components/layout/Container.jsx';
+import ProjectFigure from '../components/projects/ProjectFigure.jsx';
 import ProjectLinks from '../components/projects/ProjectLinks.jsx';
 import ProjectStatus from '../components/projects/ProjectStatus.jsx';
-import AssetImage from '../components/ui/AssetImage.jsx';
 
 export default function ProjectPage({ project }) {
   return (
@@ -28,14 +28,12 @@ export default function ProjectPage({ project }) {
             </ul>
           </section>
         )}
-        {project.caseStudy?.sections.map(({ title, body }) => (
+        {project.caseStudy?.sections.map(({ title, body, media }) => (
           <section key={title} className="detail-section section-copy">
             <h2>{title}</h2>
             <p>{body}</p>
+            {media && <ProjectFigure media={media} />}
           </section>
-        ))}
-        {project.screenshots.map(({ src, alt }) => (
-          <AssetImage key={src} src={src} alt={alt} className="project-card-image" />
         ))}
       </Container>
     </article>

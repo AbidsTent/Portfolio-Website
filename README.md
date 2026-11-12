@@ -2,16 +2,11 @@
 
 A modern, responsive portfolio website built with React, Tailwind CSS, and Framer Motion.
 
-![Portfolio Screenshot](./screenshot.png)
-
 ## Features
 
-- Dark mode design with glass morphism effects
-- Smooth animations powered by Framer Motion
-- Responsive bento grid layout for projects
-- Interactive skill badges
-- Contact section with social links
-- Fully responsive for mobile and desktop
+- Responsive dark interface with reduced-motion support
+- Project cards and directly linkable case studies
+- Skills, contact information, and social links
 
 ## Tech Stack
 
@@ -25,20 +20,20 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Frame
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js 24, as specified in `.nvmrc`
+- npm
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/AbidsTent/portfolio.git
-cd portfolio
+git clone https://github.com/AbidsTent/Portfolio-Website.git
+cd Portfolio-Website
 ```
 
 2. Install dependencies:
 ```bash
-npm install
+npm ci
 ```
 
 3. Start the development server:
@@ -60,18 +55,9 @@ The built files will be in the `dist/` directory.
 
 ### GitHub Pages
 
-1. Update `vite.config.js` with your repo name:
-```javascript
-base: '/portfolio/',
-```
-
-2. Build and deploy:
-```bash
-npm run build
-git add dist -f
-git commit -m "Deploy to GitHub Pages"
-git subtree push --prefix dist origin gh-pages
-```
+The [GitHub Pages workflow](.github/workflows/deploy.yml) builds and uploads
+`dist/` on pushes to `main` or `master` and on manual dispatch. Vite's relative
+base supports hosting under the repository path.
 
 ### Netlify
 
@@ -85,17 +71,16 @@ git subtree push --prefix dist origin gh-pages
 
 ## Project Structure
 
+See [Local Recovery](docs/LOCAL_RECOVERY.md) for the V2 entry points and recovery notes.
+
 ```
-portfolio/
+Portfolio-Website/
 ├── src/
-│   ├── components/     # React components
-│   │   ├── Hero.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Skills.jsx
-│   │   ├── Contact.jsx
-│   │   └── BentoCard.jsx
-│   ├── data/
-│   │   └── portfolioData.jsx
+│   ├── components/     # Layout, homepage, and project components
+│   ├── content/        # Profile, project records, and site metadata
+│   ├── data/           # Legacy data and shared skills and social links
+│   ├── pages/          # Home, project details, and 404
+│   ├── utils/          # Hash routing and link validation
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
@@ -108,11 +93,8 @@ portfolio/
 
 ## Customization
 
-Edit `src/data/portfolioData.jsx` to update:
-- Personal information (name, bio)
-- Social links (GitHub, LinkedIn, Email)
-- Projects
-- Skills
+Edit `src/content/profile.js` for the bio and `src/content/projects.js` for
+project records. Skills and social links are in `src/data/portfolioData.jsx`.
 
 ## License
 

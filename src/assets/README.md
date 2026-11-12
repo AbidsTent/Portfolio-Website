@@ -23,9 +23,6 @@ the public site URL. A social image URL must be absolute for sharing crawlers.
 
 ## Local typography
 
-Phase 3 bundles `fonts/InterVariable.woff2` from the official
-[Inter repository, tag v4.1](https://github.com/rsms/inter/tree/v4.1).
-Source file: `docs/font-files/InterVariable.woff2`. The accompanying
-`fonts/OFL.txt` preserves the SIL Open Font License. The font is served locally
-with `font-display: swap` and preloaded through Vite; Google Fonts requests are
-no longer required. No package dependency was added.
+The V2 recovery uses Inter when installed on the visitor's device, with a system
+sans-serif fallback. The Inter font binary is absent from this checkout.
+`fonts/OFL.txt` preserves the SIL Open Font License for a future local import.

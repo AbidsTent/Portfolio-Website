@@ -7,16 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0f',
-        surface: '#12121a',
-        'surface-light': '#1a1a25',
-        primary: '#6366f1',
-        'primary-light': '#818cf8',
-        'primary-dark': '#4f46e5',
-        accent: '#22d3ee',
-        'text-primary': '#f8fafc',
-        'text-secondary': '#94a3b8',
-        'text-muted': '#64748b',
+        background: '#0B1020',
+        surface: '#17243A',
+        'surface-light': '#24334B',
+        primary: '#38BDF8',
+        'primary-light': '#7DD3FC',
+        'primary-dark': '#0284C7',
+        accent: '#38BDF8',
+        'text-primary': '#F8FAFC',
+        'text-secondary': '#CBD5E1',
+        'text-muted': '#94A3B8',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

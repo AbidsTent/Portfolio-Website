@@ -1,12 +1,12 @@
 import { useEffect, useSyncExternalStore } from 'react';
-import SiteHeader from '../components/layout/SiteHeader.jsx';
-import SiteFooter from '../components/layout/SiteFooter.jsx';
-import HomePage from '../pages/HomePage.jsx';
-import ProjectPage from '../pages/ProjectPage.jsx';
-import NotFoundPage from '../pages/NotFoundPage.jsx';
-import { projects } from '../content/projects.js';
-import { siteMetadata } from '../content/site.js';
-import { resolveRoute } from '../utils/routes.js';
+import SiteHeader from './components/layout/SiteHeader.jsx';
+import SiteFooter from './components/layout/SiteFooter.jsx';
+import HomePage from './pages/HomePage.jsx';
+import ProjectPage from './pages/ProjectPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import { projects } from './content/projects.js';
+import { siteMetadata } from './content/site.js';
+import { resolveRoute } from './utils/routes.js';
 
 function subscribe(callback) {
   window.addEventListener('hashchange', callback);
@@ -42,7 +42,7 @@ export default function App() {
         ? document.getElementById(route.section)
         : document.querySelector('main h1');
       if (!target) return;
-      if (hash) target.focus({ preventScroll: true });
+      target.focus({ preventScroll: true });
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
     });

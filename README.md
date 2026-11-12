@@ -122,6 +122,8 @@ Portfolio-Website/
 Edit `src/content/profile.js` for the bio and social links,
 `src/content/skills.js` for skills, and `src/content/projects.js` for project
 records. See the [asset guide](src/assets/README.md) for media and résumé handling.
+The [maintenance guide](docs/MAINTENANCE.md) covers content updates, local checks,
+and the pull request workflow in Codex Desktop.
 
 ## License
 

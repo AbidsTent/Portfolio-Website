@@ -68,17 +68,19 @@ menu keyboard behavior and responsive layout.
 
 The [GitHub Pages workflow](.github/workflows/deploy.yml) builds and uploads
 `dist/` on pushes to `main` or `master` and on manual dispatch. Vite's relative
-base supports hosting under the repository path.
+base supports hosting under the repository path. In **Settings → Pages**, use
+**GitHub Actions** as the source. The `github-pages` environment currently
+allows deployments from `main`; use that branch for an approved release.
 
-The absolute `og:url` and `og:image` values in `index.html` use the current
-[GitHub Pages address](https://abidstent.github.io/Portfolio-Website/). If the
-public address changes, update both values before deploying. The new
-`branding/social-preview.png` must be served by the deployed build before
-external link previews can use it. Verify the live image URL and a shared link
-after release.
+The canonical and Open Graph URLs and the X card image in `index.html` use the
+current [GitHub Pages address](https://abidstent.github.io/Portfolio-Website/).
+If the public address changes, update those URLs before deploying. After release,
+verify the live `branding/social-preview.png` URL and a shared link. Case-study
+fragments use the same site-wide preview and canonical URL.
 
-The Phase 7 clean install reported nine dependency advisories, including five
-high-severity findings. Dependency updates are pending release review.
+Before release, run `npm ci`, `npm test`, `npm run build`, and
+`npm audit --omit=dev`. Use `npm audit` to check development and build tooling as
+well.
 
 ### Netlify
 

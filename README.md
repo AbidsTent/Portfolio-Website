@@ -2,16 +2,11 @@
 
 A modern, responsive portfolio website built with React, Tailwind CSS, and Framer Motion.
 
-![Portfolio Screenshot](./screenshot.png)
-
 ## Features
 
-- Dark mode design with glass morphism effects
-- Smooth animations powered by Framer Motion
-- Responsive bento grid layout for projects
-- Interactive skill badges
-- Contact section with social links
-- Fully responsive for mobile and desktop
+- Responsive dark interface with reduced-motion support
+- Project cards and directly linkable case studies
+- Skills, contact information, social links, and a résumé PDF
 
 ## Tech Stack
 
@@ -25,20 +20,20 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Frame
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js 24, as specified in `.nvmrc`
+- npm
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/AbidsTent/portfolio.git
-cd portfolio
+git clone https://github.com/AbidsTent/Portfolio-Website.git
+cd Portfolio-Website
 ```
 
 2. Install dependencies:
 ```bash
-npm install
+npm ci
 ```
 
 3. Start the development server:
@@ -56,22 +51,36 @@ npm run build
 
 The built files will be in the `dist/` directory.
 
+Preview the production build under the GitHub Pages repository path with
+`npm run preview -- --base /Portfolio-Website/`.
+
+## Testing
+
+Run `npm test` after installing dependencies. The suite uses Node's built-in
+test runner and Vite's React rendering support. It checks hash routes, the
+homepage and case-study markup, link behavior, the résumé, and project and
+branding assets. Use the production preview for browser checks such as mobile
+menu keyboard behavior and responsive layout.
+
 ## Deployment
 
 ### GitHub Pages
 
-1. Update `vite.config.js` with your repo name:
-```javascript
-base: '/portfolio/',
-```
+The [GitHub Pages workflow](.github/workflows/deploy.yml) builds and uploads
+`dist/` on pushes to `main` or `master` and on manual dispatch. Vite's relative
+base supports hosting under the repository path. In **Settings → Pages**, use
+**GitHub Actions** as the source. The `github-pages` environment currently
+allows deployments from `main`; use that branch for an approved release.
 
-2. Build and deploy:
-```bash
-npm run build
-git add dist -f
-git commit -m "Deploy to GitHub Pages"
-git subtree push --prefix dist origin gh-pages
-```
+The canonical and Open Graph URLs and the X card image in `index.html` use the
+current [GitHub Pages address](https://abidstent.github.io/Portfolio-Website/).
+If the public address changes, update those URLs before deploying. After release,
+verify the live `branding/social-preview.png` URL and a shared link. Case-study
+fragments use the same site-wide preview and canonical URL.
+
+Before release, run `npm ci`, `npm test`, `npm run build`, and
+`npm audit --omit=dev`. Use `npm audit` to check development and build tooling as
+well.
 
 ### Netlify
 
@@ -85,20 +94,22 @@ git subtree push --prefix dist origin gh-pages
 
 ## Project Structure
 
+See [Local Recovery](docs/LOCAL_RECOVERY.md) for the V2 entry points and recovery notes.
+
 ```
-portfolio/
+Portfolio-Website/
 ├── src/
-│   ├── components/     # React components
-│   │   ├── Hero.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Skills.jsx
-│   │   ├── Contact.jsx
-│   │   └── BentoCard.jsx
-│   ├── data/
-│   │   └── portfolioData.jsx
+│   ├── components/     # Layout, homepage, and project components
+│   ├── content/        # Profile, project records, and site metadata
+│   ├── data/           # Legacy project records used by the current catalog
+│   ├── pages/          # Home, project details, and 404
+│   ├── utils/          # Hash routing and link validation
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
+├── public/resume/      # Résumé PDF served with the site
+├── public/branding/    # Favicon, PNG fallback, and Open Graph image
+├── tests/              # Route and rendered-page regression tests
 ├── dist/              # Build output
 ├── index.html
 ├── vite.config.js
@@ -108,11 +119,9 @@ portfolio/
 
 ## Customization
 
-Edit `src/data/portfolioData.jsx` to update:
-- Personal information (name, bio)
-- Social links (GitHub, LinkedIn, Email)
-- Projects
-- Skills
+Edit `src/content/profile.js` for the bio and social links,
+`src/content/skills.js` for skills, and `src/content/projects.js` for project
+records. See the [asset guide](src/assets/README.md) for media and résumé handling.
 
 ## License
 

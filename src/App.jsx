@@ -1,22 +1,29 @@
 import { useEffect, useSyncExternalStore } from 'react';
-import SiteHeader from '../components/layout/SiteHeader.jsx';
-import SiteFooter from '../components/layout/SiteFooter.jsx';
-import HomePage from '../pages/HomePage.jsx';
-import ProjectPage from '../pages/ProjectPage.jsx';
-import NotFoundPage from '../pages/NotFoundPage.jsx';
-import { projects } from '../content/projects.js';
-import { siteMetadata } from '../content/site.js';
-import { resolveRoute } from '../utils/routes.js';
+import SiteHeader from './components/layout/SiteHeader.jsx';
+import SiteFooter from './components/layout/SiteFooter.jsx';
+import HomePage from './pages/HomePage.jsx';
+import ProjectPage from './pages/ProjectPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import { projects } from './content/projects.js';
+import { siteMetadata } from './content/site.js';
+import { resolveRoute } from './utils/routes.js';
 
 function subscribe(callback) {
   window.addEventListener('hashchange', callback);
   return () => window.removeEventListener('hashchange', callback);
 }
 
-export default function App() {
-  const hash = useSyncExternalStore(subscribe, () => window.location.hash, () => '');
+export function resolvePage(hash) {
   const route = resolveRoute(hash);
   const project = route.page === 'project' ? projects.find(item => item.slug === route.slug) : null;
+  if (route.page === 'home') return { route, project, content: <HomePage /> };
+  const content = project ? <ProjectPage key={project.id} project={project} /> : <NotFoundPage />;
+  return { route, project, content };
+}
+
+export default function App() {
+  const hash = useSyncExternalStore(subscribe, () => window.location.hash, () => '');
+  const { route, project, content } = resolvePage(hash);
   const isHome = route.page === 'home';
 
   useEffect(() => {
@@ -42,7 +49,7 @@ export default function App() {
         ? document.getElementById(route.section)
         : document.querySelector('main h1');
       if (!target) return;
-      if (hash) target.focus({ preventScroll: true });
+      target.focus({ preventScroll: true });
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
     });
@@ -53,7 +60,7 @@ export default function App() {
     <div className="min-h-screen bg-background text-text-primary">
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
-        {isHome ? <HomePage /> : project ? <ProjectPage key={project.id} project={project} /> : <NotFoundPage />}
+        {content}
       </main>
       <SiteFooter isHome={isHome} />
     </div>

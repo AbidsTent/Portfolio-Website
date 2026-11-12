@@ -1,31 +1,38 @@
 # Portfolio assets
 
-Keep only approved, real assets here. No profile photo, project screenshot, or
-architecture diagram has been supplied in Phase 2.
+Keep approved project media in `projects/<project-slug>/`. Import it from
+`src/content/projects.js` so Vite fingerprints the file and resolves its URL
+under the hosting base. Use `cover` for a homepage image and `media` on a
+case-study section for a figure. Record the source, intrinsic dimensions,
+caption, and descriptive alt text with each figure.
 
-- `profile/`: professional profile photo.
-- `projects/`: project screenshots, organized into project-slug subdirectories when supplied.
-- `diagrams/`: architecture and data-flow diagrams.
+## Project media
 
-Import these files into content modules so Vite fingerprints them and resolves
-them correctly under the hosting base. Project screenshots use `{ src, alt,
-caption? }` records in `content/projects.js`; optional media is omitted when empty.
-`AssetImage` also removes a failed image rather than leaving a broken-image icon.
-Supply image dimensions/responsive variants with the real assets during Phase 3.
+- `projects/ecommerce-power-bi-analytics/olist-executive-overview.png` is a
+  byte-for-byte copy of the [upstream Executive Overview screenshot](https://github.com/AbidsTent/ecommerce-powerbi-analytics/blob/cb0bbf1e114faed20269d029df4c223fa6202c76/screenshots/executive_overview.png).
+- `projects/sql-server-data-warehouse/warehouse-architecture.svg` comes from
+  the [upstream draw.io export](https://github.com/AbidsTent/DWH-Project/blob/e47ee27631ea8b90b074e42e1932c58c9213a8d8/docs/Architecture%20diagram.svg).
+  The export references three diagrams.net icons. The local copy embeds the
+  original folder, file, and gear icons as data URLs. The project follows the
+  Data With Baraa warehouse guide. [Project README](https://github.com/AbidsTent/DWH-Project/blob/e47ee27631ea8b90b074e42e1932c58c9213a8d8/README.md)
+- `projects/urban-mobility-data-platform/proposed-architecture.svg` renders
+  the original [P0 Mermaid flowchart](https://github.com/AbidsTent/urban-mobility-data-platform/blob/811af309b917548f25b5b6a59c2bc812beec2327/docs/architecture.md)
+  with native SVG text. The one-time export used Mermaid CLI 11.4.2 with
+  Mermaid 11.17.2. The figure depicts the planned architecture.
 
-Put a public resume PDF in `public/resume/` and favicon/social-preview assets in
-`public/branding/`. Those files retain their filenames; links must use Vite's
-`import.meta.env.BASE_URL` rather than an absolute `/resume/...` or `/branding/...`
-path. `content/site.js` records optional asset slots as `null` until supplied.
-Do not create download links or image metadata for missing files. Add the final
-favicon/social-image metadata only after supplying the actual files and confirming
-the public site URL. A social image URL must be absolute for sharing crawlers.
+## Profile and branding
+
+The About section uses `profile/abid-sharier.jpg`, a resized copy of the supplied
+photo with its original framing. Vite copies `public/resume/Abid_Sharier.pdf`
+byte for byte into the build. Review the résumé's contact details before making
+the file public. The hero uses Vite's `import.meta.env.BASE_URL` for the PDF link
+so it works under the GitHub Pages repository path.
+
+Use `public/branding/` for a favicon or social preview image. Public files
+keep their filenames. Use an absolute public URL for social preview metadata.
 
 ## Local typography
 
-Phase 3 bundles `fonts/InterVariable.woff2` from the official
-[Inter repository, tag v4.1](https://github.com/rsms/inter/tree/v4.1).
-Source file: `docs/font-files/InterVariable.woff2`. The accompanying
-`fonts/OFL.txt` preserves the SIL Open Font License. The font is served locally
-with `font-display: swap` and preloaded through Vite; Google Fonts requests are
-no longer required. No package dependency was added.
+The V2 recovery uses Inter when installed on the visitor's device, with a system
+sans-serif fallback. The Inter font binary is absent from this checkout.
+`fonts/OFL.txt` preserves the SIL Open Font License for a future local import.

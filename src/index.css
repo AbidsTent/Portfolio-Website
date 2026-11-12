@@ -307,6 +307,14 @@ main [id],
   margin-bottom: 0;
 }
 
+.about-portrait {
+  width: clamp(8rem, 20vw, 12rem);
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+}
+
 .about-copy {
   max-width: 66ch;
   color: theme('colors.text-secondary');
@@ -768,17 +776,5 @@ main [id],
 
   .btn-secondary {
     @apply border border-white/20 bg-surface text-text-primary hover:border-accent;
-  }
-
-  .glass-card {
-    @apply border border-white/10 bg-surface;
-  }
-
-  .gradient-text {
-    @apply text-accent;
-  }
-
-  .glow {
-    box-shadow: 0 0 1.5rem rgb(56 189 248 / 12%);
   }
 }

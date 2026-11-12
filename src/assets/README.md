@@ -22,10 +22,14 @@ caption, and descriptive alt text with each figure.
 
 ## Profile and branding
 
-Use `profile/` for an approved professional photo, `public/resume/` for a
-public résumé PDF, and `public/branding/` for a favicon or social preview
-image. Public files keep their filenames. Use Vite's `import.meta.env.BASE_URL`
-for local links and an absolute public URL for social preview metadata.
+The About section uses `profile/abid-sharier.jpg`, a resized copy of the supplied
+photo with its original framing. Vite copies `public/resume/Abid_Sharier.pdf`
+byte for byte into the build. Review the résumé's contact details before making
+the file public. The hero uses Vite's `import.meta.env.BASE_URL` for the PDF link
+so it works under the GitHub Pages repository path.
+
+Use `public/branding/` for a favicon or social preview image. Public files
+keep their filenames. Use an absolute public URL for social preview metadata.
 
 ## Local typography
 

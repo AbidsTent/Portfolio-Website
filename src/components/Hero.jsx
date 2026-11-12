@@ -1,5 +1,5 @@
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { heroData, socialLinks } from '../content/profile.js';
+import { ArrowDown, ArrowUpRight, FileText } from 'lucide-react';
+import { heroData, resumeUrl, socialLinks } from '../content/profile.js';
 import { featuredProjects } from '../content/projects.js';
 import { projectHref } from '../utils/routes.js';
 import Container from './layout/Container.jsx';
@@ -30,6 +30,9 @@ export default function Hero() {
                 <Icon size={17} aria-hidden="true" /> {name}
               </ExternalLink>
             ))}
+            <ExternalLink href={resumeUrl}>
+              <FileText size={17} aria-hidden="true" /> View Résumé (PDF)
+            </ExternalLink>
           </div>
         </div>
         <nav className="hero-projects" aria-label="Featured project shortcuts">

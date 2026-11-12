@@ -24,9 +24,9 @@ checked-in [content verification notes](CONTENT_VERIFICATION.md),
   also accepts the singular `#/project/<slug>` form. Unknown fragments or
   project slugs show a page with a link back to the project list.
 - The homepage reuses the Hero, Skills, and Contact components and the V2
-  layout and cards. The legacy `portfolioData.jsx`, `Projects.jsx`, and
-  `BentoCard.jsx` files remain available. V2 uses the centralized project
-  records for both cards and detail pages.
+  layout and cards. V2 uses the centralized project records for both cards
+  and detail pages. The legacy project records in `portfolioData.jsx` support
+  archive routes and the Finmate source link.
 - The homepage features SQL Server Data Warehouse, E-commerce Power BI
   Analytics, and Urban Mobility Data Platform, with Finmate under additional
   work. Statuses and source links follow the documented evidence and scope.

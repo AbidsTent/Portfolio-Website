@@ -1,13 +1,28 @@
-import { heroData as legacyHero, socialLinks } from '../data/portfolioData.jsx';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import headshotImage from '../assets/profile/abid-sharier.jpg';
+import { siteMetadata } from './site.js';
 
-export { socialLinks };
+export const resumeUrl = `${import.meta.env.BASE_URL}resume/Abid_Sharier.pdf`;
+
+export const socialLinks = [
+  { name: 'GitHub', icon: Github, url: 'https://github.com/AbidsTent' },
+  { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/abidsharier-21301177/' },
+  { name: 'Email', icon: Mail, url: 'mailto:abidsharier29@gmail.com' },
+];
 
 export const heroData = {
-  name: legacyHero.name,
+  name: siteMetadata.name,
   headline: ['Building reliable data.', 'Delivering meaningful insights.'],
   role: 'Computer Science Graduate',
   focus: 'Data Analytics, Business Intelligence & Data Engineering',
   intro: 'I use SQL, Python, and Power BI to prepare data, check its quality, and build reports that answer practical business questions.',
+};
+
+export const headshot = {
+  src: headshotImage,
+  alt: 'Portrait of Abid Sharier',
+  width: 1120,
+  height: 1400,
 };
 
 export const about = [

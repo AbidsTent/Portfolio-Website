@@ -6,7 +6,7 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Frame
 
 - Responsive dark interface with reduced-motion support
 - Project cards and directly linkable case studies
-- Skills, contact information, and social links
+- Skills, contact information, social links, and a résumé PDF
 
 ## Tech Stack
 
@@ -78,12 +78,13 @@ Portfolio-Website/
 ├── src/
 │   ├── components/     # Layout, homepage, and project components
 │   ├── content/        # Profile, project records, and site metadata
-│   ├── data/           # Legacy data and shared skills and social links
+│   ├── data/           # Legacy project records used by the current catalog
 │   ├── pages/          # Home, project details, and 404
 │   ├── utils/          # Hash routing and link validation
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
+├── public/resume/      # Résumé PDF served with the site
 ├── dist/              # Build output
 ├── index.html
 ├── vite.config.js
@@ -93,8 +94,9 @@ Portfolio-Website/
 
 ## Customization
 
-Edit `src/content/profile.js` for the bio and `src/content/projects.js` for
-project records. Skills and social links are in `src/data/portfolioData.jsx`.
+Edit `src/content/profile.js` for the bio and social links,
+`src/content/skills.js` for skills, and `src/content/projects.js` for project
+records. See the [asset guide](src/assets/README.md) for media and résumé handling.
 
 ## License
 

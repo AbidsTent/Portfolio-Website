@@ -51,6 +51,17 @@ npm run build
 
 The built files will be in the `dist/` directory.
 
+Preview the production build under the GitHub Pages repository path with
+`npm run preview -- --base /Portfolio-Website/`.
+
+## Testing
+
+Run `npm test` after installing dependencies. The suite uses Node's built-in
+test runner and Vite's React rendering support. It checks hash routes, the
+homepage and case-study markup, link behavior, the résumé, and project and
+branding assets. Use the production preview for browser checks such as mobile
+menu keyboard behavior and responsive layout.
+
 ## Deployment
 
 ### GitHub Pages
@@ -58,6 +69,16 @@ The built files will be in the `dist/` directory.
 The [GitHub Pages workflow](.github/workflows/deploy.yml) builds and uploads
 `dist/` on pushes to `main` or `master` and on manual dispatch. Vite's relative
 base supports hosting under the repository path.
+
+The absolute `og:url` and `og:image` values in `index.html` use the current
+[GitHub Pages address](https://abidstent.github.io/Portfolio-Website/). If the
+public address changes, update both values before deploying. The new
+`branding/social-preview.png` must be served by the deployed build before
+external link previews can use it. Verify the live image URL and a shared link
+after release.
+
+The Phase 7 clean install reported nine dependency advisories, including five
+high-severity findings. Dependency updates are pending release review.
 
 ### Netlify
 
@@ -85,6 +106,8 @@ Portfolio-Website/
 │   ├── main.jsx
 │   └── index.css
 ├── public/resume/      # Résumé PDF served with the site
+├── public/branding/    # Favicon, PNG fallback, and Open Graph image
+├── tests/              # Route and rendered-page regression tests
 ├── dist/              # Build output
 ├── index.html
 ├── vite.config.js

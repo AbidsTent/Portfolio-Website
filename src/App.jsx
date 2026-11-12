@@ -13,10 +13,17 @@ function subscribe(callback) {
   return () => window.removeEventListener('hashchange', callback);
 }
 
-export default function App() {
-  const hash = useSyncExternalStore(subscribe, () => window.location.hash, () => '');
+export function resolvePage(hash) {
   const route = resolveRoute(hash);
   const project = route.page === 'project' ? projects.find(item => item.slug === route.slug) : null;
+  if (route.page === 'home') return { route, project, content: <HomePage /> };
+  const content = project ? <ProjectPage key={project.id} project={project} /> : <NotFoundPage />;
+  return { route, project, content };
+}
+
+export default function App() {
+  const hash = useSyncExternalStore(subscribe, () => window.location.hash, () => '');
+  const { route, project, content } = resolvePage(hash);
   const isHome = route.page === 'home';
 
   useEffect(() => {
@@ -53,7 +60,7 @@ export default function App() {
     <div className="min-h-screen bg-background text-text-primary">
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
-        {isHome ? <HomePage /> : project ? <ProjectPage key={project.id} project={project} /> : <NotFoundPage />}
+        {content}
       </main>
       <SiteFooter isHome={isHome} />
     </div>

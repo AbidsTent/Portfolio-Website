@@ -8,9 +8,11 @@ const email = socialLinks.find(social => social.name === 'Email');
 export default function Contact() {
   return (
     <section id="contact" tabIndex={-1} className="site-section contact">
-      <Container width="narrow" className="section-copy">
-        <h2>Contact</h2>
-        <p>I'm open to discussing projects, opportunities, and collaborations.</p>
+      <Container className="contact-panel">
+        <div className="section-copy">
+          <h2>Contact</h2>
+          <p>I'm open to discussing projects, opportunities, and collaborations.</p>
+        </div>
         <div className="contact-actions">
           <a href={email.url} className="btn-primary">
             Email me <ArrowUpRight size={17} aria-hidden="true" />

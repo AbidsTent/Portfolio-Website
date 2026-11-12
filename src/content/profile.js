@@ -4,8 +4,29 @@ export { socialLinks };
 
 export const heroData = {
   name: legacyHero.name,
-  headline: legacyHero.subtitle,
-  intro: 'I work with SQL and Python to prepare data, check its quality, and build reports that help people make decisions.',
-  about: 'I graduated from Toronto Metropolitan University in 2026 with a BSc in Computer Science. My projects focus on data warehousing, analytics, and reporting.',
-  experience: 'I have more than four years of restaurant operations experience, including supervisory responsibilities.',
+  headline: ['Building reliable data.', 'Delivering meaningful insights.'],
+  role: 'Computer Science Graduate',
+  focus: 'Data Analytics, Business Intelligence & Data Engineering',
+  intro: 'I use SQL, Python, and Power BI to prepare data, check its quality, and build reports that answer practical business questions.',
 };
+
+export const about = [
+  'I earned my B.Sc. in Computer Science at Toronto Metropolitan University in 2026. I’m interested in how data analytics, business intelligence, and data engineering can help teams understand what’s happening and decide what to do next.',
+  'My projects span SQL data warehousing, Power BI reporting, and source data profiling. More than four years in restaurant operations taught me to approach technical work with a practical question in mind and think about how the answer will be used.',
+];
+
+export const background = [
+  {
+    type: 'Education',
+    title: 'B.Sc. Computer Science',
+    context: 'Toronto Metropolitan University',
+    period: '2026',
+    description: 'My degree gave me a foundation in software development and problem-solving that I apply to analytics and data engineering projects.',
+  },
+  {
+    type: 'Experience',
+    title: 'Restaurant operations',
+    period: '4+ years',
+    description: 'Worked in day-to-day restaurant operations, including supervisory responsibilities. That experience informs how I frame business questions and communicate findings.',
+  },
+];

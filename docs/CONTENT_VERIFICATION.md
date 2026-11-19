@@ -117,12 +117,84 @@ Socket.IO expense updates, and browser-stored budgets. Frontend/backend source,
 models, manifests, and routes are the deliverables. Live market prices are not
 supported by the checked routes; stored price fields do not prove a market API.
 
-Limits: README has unresolved merge-conflict markers and contradicts itself about
-database and authentication behavior. Source supports a more specific description
-than the previous static HTML/CSS summary, but runtime was not tested. Completion,
-deployment, security quality, individual contribution, team context, and sole
-authorship remain unverified. Package metadata refers to another repository
-owner; clarify collaboration/provenance before making contribution claims.
+Follow-up review on November 19, 2026 used the same repository revision and the
+owner-supplied `review-assets/finmate-demo.mp4`. The owner identifies Finmate as a
+completed academic project. The walkthrough supports that scope and shows:
+
+- Approximately 00:00–00:26, login, a populated dashboard, category and trend
+  charts, and dashboard summaries.
+- Approximately 00:26–01:38, budget changes, expense additions and edits, API
+  responses, and synchronized expense updates across two browser windows.
+- Approximately 01:38–02:16, investment creation, editing, deletion, and computed
+  portfolio summaries. The forms accept a manually entered current price.
+- Approximately 02:18–02:44, logout and registration leading to a new dashboard.
+- Approximately 02:48–04:06, MongoDB Compass user and expense documents alongside
+  the running app, including expense additions, deletion, and editing.
+
+The source corroborates React routes, Express REST endpoints, Mongoose models,
+JWT authentication, bcrypt hashing, and user-scoped database queries. Budgets
+are stored in browser localStorage. The recording and code support **Completed**
+for an academic team prototype. The README discusses collaboration and the
+package metadata names another repository owner. Commit-level review supports
+the following scoped contributions attributed to Abid Sharier / `AbidsTent`:
+
+- [2120f72](https://github.com/AbidsTent/finmate/commit/2120f72a7f4526da9b6a05b660f2ac01547bf5ad)
+  is a non-merge commit adding investment form, table and summary components,
+  modifying the React investment CRUD page, and updating its API client.
+- [c19f4e2](https://github.com/AbidsTent/finmate/commit/c19f4e2aa004ccde2d0c67a70c0a251f3b339afd)
+  is a non-merge commit adding investment routes and seed code, updating the
+  investment model and API mounting, and integrating investment requests.
+- [cb8e0a8](https://github.com/AbidsTent/finmate/commit/cb8e0a8ea9a82af503548634767901d45a607713)
+  is a non-merge commit adding authenticated Socket.IO connections, user-room
+  expense events, and the frontend listener and reload flow.
+
+These statements were checked against the file diffs and GitHub author mapping,
+not inferred from merge commits or commit messages alone. The case study names
+these recorded contributions within the team project. Broader design ownership,
+shared or paired work, project leadership, and individual responsibility for
+authentication or the home dashboard still require the owner's confirmation.
+
+Limits: the README still contains conflict markers and contradictory older
+descriptions. This review inspected source and recorded UI evidence rather than
+starting the application against its database. Public deployment, live stock
+price feeds, production readiness, and security quality are not validated. The
+source contains a fallback JWT signing secret and browser token storage, which
+require a separate hardening review before any production claim.
+
+The original recording is 221,909,324 bytes (about 222 MB), 4:06.82 long, with
+1920 × 1080 HEVC video at 30 fps and AAC stereo audio. Visual review sampled the
+timeline every two seconds and inspected key frames at larger size. It is not
+cleared for publication. Email/autofill information appears during login and
+registration, and MongoDB Compass exposes user email addresses and password
+hashes around 02:48–03:02. Database records and browser context also need privacy
+review. Audio was not independently transcribed. The original video and uncropped
+review frames stay under the ignored `/review-assets/` directory and are excluded
+from website imports and public assets.
+
+Three separately reviewed screenshot crops are now included as lossless WebP
+assets in `src/assets/projects/finmate/`. No video is included. The approved crops
+were inspected at their final dimensions, with the following bounds in the
+1920 × 1080 source frame (x, y, width, height):
+
+| Asset | Timestamp | Crop bounds | What is visible |
+| --- | --- | --- | --- |
+| `new-account-dashboard.webp` | 02:43.500 | 168, 356, 1010, 598 | Zero totals and empty chart states after new-account registration. |
+| `expense-entry.webp` | 01:40.000 | 1402, 482, 500, 372 | The right-hand app's blank expense form and input placeholders. |
+| `investment-entry.webp` | 01:40.000 | 28, 222, 612, 458 | The left-hand app's blank investment form and input placeholders. |
+
+The final crops contain no account names, email addresses, credentials, password
+hashes, database records, or populated personal transaction or holding data.
+Existing-record views were excluded because their status as non-sensitive demo
+data is unconfirmed. No fields or metrics were rewritten, masked, composited,
+or generated. The published crops contain no EXIF/XMP metadata. Each caption
+states the original time and scope; the source link identifies implementation
+code, not a public copy of the private recording.
+
+For a later public demo, create a separately reviewed, redacted recording with
+captions and H.264/AAC delivery, then obtain the owner's approval for the chosen
+external host and URL. Add a video link or player only after an approved URL is
+available. Preserve the original. A small poster, controls, no autoplay, and
+`preload="none"` are appropriate if a player is later approved.
 
 ### Unlisted projects and route compatibility
 
@@ -171,8 +243,9 @@ Still needed:
    is desired; otherwise the generic truthful operations entry can remain.
 4. Actual repositories and scope for Customer & Product Analytics Platform and
    Canadian Job Copilot; no confirmation request blocks this phase.
-5. Finmate contribution/team context, resolved README, completion and runtime
-   confirmation. No hosted demo should be added before a valid URL is supplied.
+5. Finmate broader individual ownership, resolved README, independent runtime/security
+   checks, and an approved redacted demo URL. Academic completion is now supported
+   by the owner confirmation and recorded walkthrough described above.
 
 ## Recommendations for stronger case studies
 

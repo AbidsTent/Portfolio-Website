@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createServer } from 'vite';
+import { certifications } from '../src/content/certifications.js';
 
 const root = new URL('../', import.meta.url);
 const pagesBase = '/Portfolio-Website/';
@@ -49,13 +50,51 @@ test('home exposes its sections, navigation targets, and keyboard entry points',
   renderedLink(home, '#main-content');
   assert.match(home, /<button\b[^>]*aria-expanded="false"[^>]*aria-controls="mobile-navigation"/);
   assert.match(home, /<nav\b[^>]*id="mobile-navigation"[^>]*hidden=""/);
-  for (const section of ['hero', 'projects', 'about', 'skills', 'experience', 'contact']) {
+  for (const section of ['hero', 'projects', 'about', 'skills', 'certifications', 'experience', 'contact']) {
     assert.match(home, new RegExp(`<section\\b[^>]*id="${section}"[^>]*tabindex="-1"`, 'i'));
     renderedLink(home, `#${section}`);
   }
   const { route, content } = resolvePage('#about');
   assert.equal(route.section, 'about');
   assert.match(renderToStaticMarkup(content), /<h2\b[^>]*>About<\/h2>/);
+});
+
+test('completed courses render between skills and experience with safe credential links', () => {
+  const start = home.indexOf('<section id="certifications"');
+  const end = home.indexOf('<section id="experience"');
+  assert.ok(start > home.indexOf('<section id="skills"') && end > start);
+  const section = home.slice(start, end);
+  assert.match(section, /<h2[^>]*>Courses &amp; Certifications<\/h2>/);
+  assert.match(section, /Course-completion certificates issued by LinkedIn Learning/);
+  assert.equal((section.match(/<article>/g) ?? []).length, 6);
+  for (const course of certifications) {
+    assert.ok(section.includes(`<h3>${course.title}</h3>`));
+    assert.ok(section.includes(`dateTime="${course.completedAt}"`));
+    const link = renderedLink(section, course.credentialUrl);
+    assert.match(link, /target="_blank"/);
+    assert.match(link, /rel="noopener noreferrer"/);
+    assert.ok(link.includes(`aria-label="View credential: ${course.title}"`));
+  }
+  const { route, content } = resolvePage('#certifications');
+  assert.equal(route.section, 'certifications');
+  assert.match(renderToStaticMarkup(content), /Courses &amp; Certifications/);
+});
+
+test('skills render six categories and accessible qualifications without redundant lists', () => {
+  const section = home.slice(home.indexOf('<section id="skills"'), home.indexOf('<section id="certifications"'));
+  const headings = [...section.matchAll(/<h3>([^<]+)<\/h3>/g)].map(match => match[1]);
+  assert.deepEqual(headings, ['Languages', 'Databases', 'Business Intelligence', 'Data Engineering', 'Cloud &amp; Analytics Tools', 'Development &amp; CI/CD']);
+  const skills = [...section.matchAll(/<li>([^<]+)/g)].map(match => match[1]);
+  assert.equal(skills.length, 23);
+  assert.equal(new Set(skills).size, skills.length);
+  for (const skill of ['dbt', 'Azure Data Factory', 'Microsoft Fabric']) {
+    assert.ok(section.includes(`<li>${skill}<span class="skill-qualification">Coursework</span></li>`));
+  }
+  assert.ok(section.includes('<li>ETL/ELT<span class="skill-qualification">ELT foundations</span></li>'));
+  assert.ok(section.includes('<li>PostgreSQL<span class="skill-qualification">Foundations</span></li>'));
+  assert.ok(section.includes('<li>Spark SQL<span class="skill-qualification">Foundations</span></li>'));
+  assert.doesNotMatch(section, /<sup|skills-note/);
+  assert.doesNotMatch(section, /skills-learning|learning-groups|Learning &amp; familiarity|Completed courses|Additional familiarity|Project work/);
 });
 
 test('the homepage features the approved three projects in order', () => {
@@ -87,6 +126,63 @@ test('the homepage links to the matching case studies and project repositories',
   }
   const archive = renderToStaticMarkup(resolvePage('#/project/sales-inventory-analysis').content);
   assert.match(archive, /Sales &amp; Inventory Analysis/);
+});
+
+test('Finmate presents a completed academic team project in Additional Work with verified limits', () => {
+  const { project, content } = resolvePage('#/projects/finmate');
+  assert.equal(project.id, 1);
+  assert.equal(project.status, 'Completed');
+  assert.ok(!project.featured);
+  assert.equal(project.demoUrl, null);
+  assert.match(project.summary, /academic team project/);
+  const html = renderToStaticMarkup(content);
+  assert.match(html, />Completed<\/span>/);
+  assert.match(html, /Investment records/);
+  assert.match(html, /prices entered by the user/);
+  assert.match(html, /JWT authentication, bcrypt password hashing/);
+  assert.match(html, /browser localStorage/);
+  assert.match(html, /individual feature ownership still needs confirmation/);
+  assert.match(html, /Recorded contributions/);
+  assert.match(html, /Repository commits under my account/);
+  assert.doesNotMatch(html, /Status unconfirmed|<video|review-assets\/|\.mp4/);
+  renderedLink(html, 'https://github.com/AbidsTent/finmate');
+  const additional = home.slice(home.indexOf('>Additional work</h2>'), home.indexOf('<section id="about"'));
+  assert.match(additional, />Finmate<\/a>/);
+  assert.match(additional, />Completed<\/span>/);
+});
+
+test('Finmate uses the three reviewed local screenshots with captions, alt text and implementation sources', async () => {
+  const { project, content } = resolvePage('#/projects/finmate');
+  const media = project.caseStudy.sections.flatMap(section => section.media ? [section.media] : []);
+  const expected = [
+    ['new-account-dashboard.webp', 1010, 598, '02:43.500', 'frontend/src/pages/Home.jsx'],
+    ['expense-entry.webp', 500, 372, '01:40.000', 'frontend/src/pages/Expenses.jsx'],
+    ['investment-entry.webp', 612, 458, '01:40.000', 'frontend/src/components/investments/InvestmentForm.jsx'],
+  ];
+  const html = renderToStaticMarkup(content);
+  assert.equal(media.length, expected.length);
+  assert.equal((html.match(/<figure\b/g) ?? []).length, 3);
+  for (const [index, [filename, width, height, timestamp, source]] of expected.entries()) {
+    const figure = media[index];
+    assert.deepEqual([figure.width, figure.height], [width, height]);
+    assert.ok(figure.alt.length > 20);
+    assert.ok(figure.caption.includes(timestamp));
+    const image = html.match(/<img\b[^>]*>/g).find(tag => tag.includes(filename));
+    assert.ok(image, `Missing screenshot ${filename}`);
+    assert.match(image, /loading="lazy"/);
+    assert.match(image, /decoding="async"/);
+    assert.ok(image.includes(`width="${width}"`) && image.includes(`height="${height}"`));
+    assert.ok(image.includes('src/assets/projects/finmate/'));
+    const bytes = await readFile(new URL(`src/assets/projects/finmate/${filename}`, root));
+    assert.equal(bytes.subarray(0, 4).toString(), 'RIFF');
+    assert.equal(bytes.subarray(8, 12).toString(), 'WEBP');
+    assert.equal(bytes.subarray(12, 16).toString(), 'VP8L');
+    const dimensions = bytes.readUInt32LE(21);
+    assert.deepEqual([(dimensions & 0x3fff) + 1, ((dimensions >>> 14) & 0x3fff) + 1], [width, height]);
+    const link = renderedLink(html, `https://github.com/AbidsTent/finmate/blob/88b211dd12b3ca28f20bed3e8f0baebc3065ff39/${source}`);
+    assert.match(link, /rel="noopener noreferrer"/);
+  }
+  assert.doesNotMatch(html, /<video|review-assets\/|\.mp4/);
 });
 
 test('invalid optional project URLs are omitted from rendered links', () => {

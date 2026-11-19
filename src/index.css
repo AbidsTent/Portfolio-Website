@@ -351,6 +351,7 @@ main [id],
 
 .project-card,
 .skill-category,
+.certificate-card,
 .experience-card,
 .contact-panel {
   min-width: 0;
@@ -602,6 +603,90 @@ main [id],
   font-size: 1.13rem;
 }
 
+.section-intro {
+  max-width: 70ch;
+  margin-bottom: 1.25rem;
+  color: theme('colors.text-secondary');
+  line-height: 1.65;
+}
+
+.skills-section {
+  padding-bottom: 0;
+}
+
+.skill-qualification {
+  margin-left: 0.4rem;
+  padding-left: 0.4rem;
+  border-left: 1px solid var(--line);
+  color: theme('colors.text-secondary');
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.skill-category .technology-list li {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.course-note {
+  margin-top: 0.75rem;
+  color: theme('colors.text-secondary');
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.certifications-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.certificate-card article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.1rem;
+}
+
+.certificate-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  justify-content: space-between;
+  color: theme('colors.text-secondary');
+  font-size: 0.8rem;
+}
+
+.certificate-card h3 {
+  margin-top: 0.85rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.certificate-card .technology-list {
+  margin-block: 0.75rem;
+}
+
+.certificate-card .technology-list li {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.credential-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  margin-top: auto;
+  color: theme('colors.accent');
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .experience-meta {
   color: theme('colors.accent');
   font-size: 0.875rem;
@@ -672,12 +757,9 @@ main [id],
 @media (min-width: 640px) {
   .project-grid,
   .skills-grid,
+  .certifications-grid,
   .experience-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .skills-grid > :last-child:nth-child(odd) {
-    grid-column: 1 / -1;
   }
 
   .project-grid:has(.project-cover-image) .project-cover {
@@ -735,21 +817,10 @@ main [id],
     display: block;
   }
 
-  .project-grid {
+  .project-grid,
+  .skills-grid,
+  .certifications-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .skills-grid > * {
-    grid-column: span 2;
-  }
-
-  .skills-grid > :nth-child(4),
-  .skills-grid > :last-child:nth-child(odd) {
-    grid-column: span 3;
   }
 
   .contact-panel {

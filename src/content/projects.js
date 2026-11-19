@@ -2,6 +2,39 @@ import { projects as legacyProjects } from '../data/portfolioData.jsx';
 import olistOverviewImage from '../assets/projects/ecommerce-power-bi-analytics/olist-executive-overview.png';
 import warehouseArchitectureImage from '../assets/projects/sql-server-data-warehouse/warehouse-architecture.svg';
 import proposedMobilityArchitectureImage from '../assets/projects/urban-mobility-data-platform/proposed-architecture.svg';
+import finmateDashboardImage from '../assets/projects/finmate/new-account-dashboard.webp';
+import finmateExpenseImage from '../assets/projects/finmate/expense-entry.webp';
+import finmateInvestmentImage from '../assets/projects/finmate/investment-entry.webp';
+
+const finmateDashboard = {
+  src: finmateDashboardImage,
+  width: 1010,
+  height: 598,
+  alt: 'Finmate new-account dashboard with zero totals, no category or spending records, and an empty income-versus-expenses chart.',
+  caption: 'New-account dashboard at 02:43.500 in the local demonstration. Zero totals and empty chart states are shown as recorded. Cropped to exclude account and browser information.',
+  sourceUrl: 'https://github.com/AbidsTent/finmate/blob/88b211dd12b3ca28f20bed3e8f0baebc3065ff39/frontend/src/pages/Home.jsx',
+  sourceLabel: 'Dashboard implementation',
+};
+
+const finmateExpenseEntry = {
+  src: finmateExpenseImage,
+  width: 500,
+  height: 372,
+  alt: 'Blank Finmate Add Expense form with category, title, amount and date fields and an Add Expense button.',
+  caption: 'Expense entry form at 01:40.000 in the local demonstration, cropped from the right-hand application window. Fields are blank or show input placeholders.',
+  sourceUrl: 'https://github.com/AbidsTent/finmate/blob/88b211dd12b3ca28f20bed3e8f0baebc3065ff39/frontend/src/pages/Expenses.jsx',
+  sourceLabel: 'Expense implementation',
+};
+
+const finmateInvestmentEntry = {
+  src: finmateInvestmentImage,
+  width: 612,
+  height: 458,
+  alt: 'Blank Finmate Add Investment form with ticker, buy price, shares, optional current price and buy date fields.',
+  caption: 'Investment entry form at 01:40.000 in the local demonstration, cropped from the left-hand application window. Current price is entered manually; AAPL is an input placeholder.',
+  sourceUrl: 'https://github.com/AbidsTent/finmate/blob/88b211dd12b3ca28f20bed3e8f0baebc3065ff39/frontend/src/components/investments/InvestmentForm.jsx',
+  sourceLabel: 'Investment form implementation',
+};
 
 const olistOverview = {
   src: olistOverviewImage,
@@ -141,15 +174,42 @@ const records = [
     slug: 'finmate',
     title: 'Finmate',
     category: 'Application development',
-    summary: 'A personal finance application with expense and investment tracking, charts, and browser-stored budgets.',
-    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Chart.js'],
-    status: 'Status unconfirmed',
+    summary: 'A completed academic team project for tracking expenses, budgets, and investment records with a React frontend and a Node.js/Express API.',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'Chart.js', 'Socket.IO'],
+    status: 'Completed',
     githubUrl: legacyProjects.find(({ id }) => id === 1).github,
     caseStudy: {
       sections: [
         {
-          title: 'Source overview',
-          body: 'The repository contains a React frontend and Express routes for user-scoped expense and investment records. Completion, deployment, and individual contribution remain unconfirmed.',
+          title: 'Overview and objective',
+          body: 'Finmate brings categorized expenses, a saved budget, and investment records into one personal-finance dashboard. The academic team project connects data-entry workflows with summaries and charts so users can review their recorded spending and holdings.',
+          media: finmateDashboard,
+        },
+        {
+          title: 'Expense tracking and reporting',
+          body: 'Users can add, edit, and delete expenses with a title, category, amount, and date. The dashboard calculates spending totals, remaining budget, category breakdowns, and investment cost basis. The recording demonstrates expense changes updating across two open tabs; the source implements these notifications with Socket.IO.',
+          media: finmateExpenseEntry,
+        },
+        {
+          title: 'Investment records',
+          body: 'The walkthrough demonstrates adding, editing, and deleting holdings. Each record captures a ticker, shares, purchase price, and optional current price and purchase date. Portfolio value and profit/loss use the prices entered by the user.',
+          media: finmateInvestmentEntry,
+        },
+        {
+          title: 'Frontend and backend architecture',
+          body: 'React Router connects the dashboard, expense, investment, login, and registration pages. The frontend calls an Express REST API. Source code implements JWT authentication, bcrypt password hashing, and user-scoped queries through Mongoose models for MongoDB.',
+        },
+        {
+          title: 'Persistence and demonstrated workflow',
+          body: 'The recorded local walkthrough shows login, account creation, expense updates, investment actions, and MongoDB Compass views of stored users and expenses. The source stores expense and investment records in MongoDB and keeps each user’s budget in browser localStorage.',
+        },
+        {
+          title: 'Recorded contributions',
+          body: 'Repository commits under my account add the React investment forms, table, summary components and API client, update the investment API, and implement Socket.IO expense notifications. This work was part of the academic team project.',
+        },
+        {
+          title: 'Academic scope and limitations',
+          body: 'Completion refers to the academic application demonstrated in the recording. Investment prices are entered manually, and budgets remain browser-local. The repository describes team collaboration; broader individual feature ownership still needs confirmation. Public deployment and production security hardening require separate validation.',
         },
       ],
     },

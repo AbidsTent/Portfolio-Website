@@ -51,6 +51,9 @@ test-results/
 /Abid_Sharier.pdf
 /Abid_Sharier.docx
 
+# Temporary, private review material
+/review-assets/
+
 # Misc
 *.log
 *.tmp

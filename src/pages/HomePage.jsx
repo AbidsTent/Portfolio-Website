@@ -2,6 +2,7 @@ import Contact from '../components/Contact.jsx';
 import Experience from '../components/Experience.jsx';
 import Hero from '../components/Hero.jsx';
 import Skills from '../components/Skills.jsx';
+import Certifications from '../components/Certifications.jsx';
 import Container from '../components/layout/Container.jsx';
 import ProjectCard from '../components/projects/ProjectCard.jsx';
 import AssetImage from '../components/ui/AssetImage.jsx';
@@ -50,6 +51,7 @@ export default function HomePage() {
         </Container>
       </section>
       <Skills />
+      <Certifications />
       <Experience />
       <Contact />
     </>

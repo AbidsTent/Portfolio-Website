@@ -123,6 +123,18 @@ Edit `src/content/profile.js` for the bio and social links,
 `src/content/skills.js` for skills, and `src/content/projects.js` for project
 records. See the [asset guide](src/assets/README.md) for media and résumé handling.
 
+For courses, edit the `certifications` array in `src/content/certifications.js`.
+Each record contains a unique `id`, the exact `title` and `issuer`, an ISO
+`completedAt` date (`YYYY-MM-DD`), a `skills` array, and the official
+`credentialUrl`. Array order controls the cards; keep the data-engineering courses
+first. Verify each credential and preserve course-completion wording. Add the
+expected record in `tests/certifications.test.js`, then run the tests, build, and
+preview. Keep skills in `src/content/skills.js` categorized once. Use
+`skillQualifications` to mark course-based exposure or foundations, and update
+those qualifications only when implementation evidence supports it. Data
+Governance remains a subject in its course card. The existing workflow is in
+`.github/workflows/deploy.yml`.
+
 ## License
 
 MIT License - feel free to use this template for your own portfolio!

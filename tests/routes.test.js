@@ -7,7 +7,7 @@ test('the default fragment and section links resolve to the homepage', () => {
   for (const hash of [undefined, '', '#', '#/', '#hero']) {
     assert.deepEqual(resolveRoute(hash), { page: 'home', section: 'hero' });
   }
-  for (const section of ['projects', 'about', 'skills', 'experience', 'contact']) {
+  for (const section of ['projects', 'about', 'skills', 'certifications', 'experience', 'contact']) {
     assert.deepEqual(resolveRoute(`#${section}`), { page: 'home', section });
   }
   assert.deepEqual(resolveRoute('#/projects/'), { page: 'home', section: 'projects' });

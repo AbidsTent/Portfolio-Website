@@ -8,6 +8,17 @@ caption, and descriptive alt text with each figure.
 
 ## Project media
 
+- `projects/finmate/` contains three lossless WebP crops from the private,
+  owner-supplied Finmate recording. `new-account-dashboard.webp` is from
+  02:43.500 (1010 × 598), and `expense-entry.webp` (500 × 372) and
+  `investment-entry.webp` (612 × 458) are from the right and left application
+  windows at 01:40.000. The final crops were visually checked for private data.
+  They show an empty new-account dashboard and blank entry forms. Browser chrome,
+  account names, existing financial records, and developer panels are excluded.
+  Only cropping and lossless encoding were applied. Image metadata contains no
+  EXIF or XMP. The original video and review captures stay in ignored
+  `/review-assets/`; they are not website assets. Captions identify each timestamp,
+  and figure source links point to the corresponding implementation files.
 - `projects/ecommerce-power-bi-analytics/olist-executive-overview.png` is a
   byte-for-byte copy of the [upstream Executive Overview screenshot](https://github.com/AbidsTent/ecommerce-powerbi-analytics/blob/cb0bbf1e114faed20269d029df4c223fa6202c76/screenshots/executive_overview.png).
 - `projects/sql-server-data-warehouse/warehouse-architecture.svg` comes from

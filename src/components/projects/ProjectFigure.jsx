@@ -8,7 +8,7 @@ export default function ProjectFigure({ media }) {
   const hintId = useId();
 
   return (
-    <figure className="project-figure">
+    <figure className="project-figure" style={{ maxWidth: media.width }}>
       {media.diagram && (
         <div className="project-figure-controls">
           <button

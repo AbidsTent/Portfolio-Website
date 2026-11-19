@@ -28,6 +28,7 @@ export const headshot = {
 export const about = [
   'I earned my B.Sc. in Computer Science at Toronto Metropolitan University in 2026. I’m interested in how data analytics, business intelligence, and data engineering can help teams understand what’s happening and decide what to do next.',
   'My projects span SQL data warehousing, Power BI reporting, and source data profiling. More than four years in restaurant operations taught me to approach technical work with a practical question in mind and think about how the answer will be used.',
+  'I’m continuing to study modern data platforms, cloud data integration, and analytics engineering through LinkedIn Learning courses.',
 ];
 
 export const background = [
